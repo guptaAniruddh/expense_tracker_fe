@@ -1,0 +1,64 @@
+.divstyle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+}
+.buttonStyle {
+  text-align: center;
+}
+.labelStyle {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  font-size: small;
+  margin: 10px 2px;
+  align-items: flex-start;
+}
+.hstyle {
+  font-family: 'Roboto', sans-serif;
+}
+.inputStyle {
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-bottom: 12px;
+}
+
+.formItem {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+.navItem {
+  font-weight: 400;
+  color: white;
+  text-decoration: none;
+}
+
+.navItem::before {
+  width: 0;
+  height: 2px;
+  content: '';
+  background-color: white;
+  display: block;
+  transition: width 0.3s;
+  text-decoration: none;
+}
+
+.navItem:hover::before {
+  width: 100%;
+  text-decoration: none;
+}
+
+.activeTab::before {
+  width: 100%;
+  text-decoration: none;
+}
+
+.navItem:hover {
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+}
