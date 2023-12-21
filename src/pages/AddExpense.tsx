@@ -27,6 +27,7 @@ const AddExpense = () => {
   const navigate = useNavigate();
   const [validationErrors,setValidationErrors] = useState<IExpenseValidationError>(expenseValidationErrors)
   const [response, setResponse] = useState({
+    type:"",
     title:"",
     amount: 10,
     date: new Date(), 
@@ -54,7 +55,8 @@ const AddExpense = () => {
   }
   },[expenseId]);
 
-  const expenseModel = Schema.Model<{title:string,amount:number,date:Date,category:string }>({
+  const expenseModel = Schema.Model<{type:string,title:string,amount:number,date:Date,category:string }>({
+    type:Schema.Types.StringType().isRequired("This field is mandatory"),
     title:Schema.Types.StringType().isRequired('This field is mandatory'),
     amount:Schema.Types.NumberType().isRequired('This field is madatory'),
     date:Schema.Types.DateType().isRequired('Date is required to Track'),
@@ -65,7 +67,7 @@ const AddExpense = () => {
   })
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
-    const field = e.target.name as 'title'|'amount'|'date'|'category'
+    const field = e.target.name as 'title'|'amount'|'date'|'category'|'type'
     setResponse({
       ...response,
       [e.target.name]: val,
@@ -76,11 +78,11 @@ const AddExpense = () => {
       [field]: partialCheck
     });
   };
-  const handleSubmit = async(response:{title:string,amount:number,date:Date,category:string})=>{
+  const handleSubmit = async(response:{type:string,title:string,amount:number,date:Date,category:string})=>{
     try{
       const checkResult = expenseModel.check(response)
       setValidationErrors(checkResult);
-      if( checkResult.title?.hasError || checkResult.amount?.hasError || checkResult.category?.hasError || checkResult.date?.hasError){
+      if( checkResult.type?.hasError||checkResult.title?.hasError || checkResult.amount?.hasError || checkResult.category?.hasError || checkResult.date?.hasError){
         toast.error("Error in Form FIelds")
         return;
       }
@@ -97,7 +99,7 @@ const AddExpense = () => {
     }
   }
   
-  const handleEdit = async(response:{title:string,amount:Number,date:Date,category:string})=>{
+  const handleEdit = async(response:{type:string,title:string,amount:Number,date:Date,category:string})=>{
     try{
       await axios.put(`http://localhost:5000/api/external/expenses/${params.id}`,response,{
         headers:{

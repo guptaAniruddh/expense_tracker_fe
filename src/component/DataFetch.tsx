@@ -68,27 +68,31 @@ const DataFetch = () => {
       </Column> */}
 
           <Column width={200}>
-            <HeaderCell>Title</HeaderCell>
+            <HeaderCell className="font">Title</HeaderCell>
             <Cell dataKey="title" />
           </Column>
+          <Column width={200}>
+            <HeaderCell className="font">Type</HeaderCell>
+            <Cell dataKey="type" />
+          </Column>
 
-          <Column width={190}>
-            <HeaderCell>Amount</HeaderCell>
+          <Column width={200}>
+            <HeaderCell className="font">Amount</HeaderCell>
             <Cell dataKey="amount" />
           </Column>
 
-          <Column width={220}>
-            <HeaderCell>Date</HeaderCell>
+          <Column width={200}>
+            <HeaderCell className="font">Date</HeaderCell>
             <Cell dataKey="date" />
           </Column>
 
           <Column width={200}>
-            <HeaderCell>Category</HeaderCell>
+            <HeaderCell className ="font">Category</HeaderCell>
             <Cell dataKey="category" />
           </Column>
 
-          <Column width={220} fixed="right">
-            <HeaderCell>Action </HeaderCell>
+          <Column width={250} fixed="right">
+            <HeaderCell className="font">Action </HeaderCell>
 
             <Cell style={{ padding: "6px" }}>
               {(rowData) => (
@@ -112,21 +116,7 @@ const DataFetch = () => {
               )}
             </Cell>
           </Column>
-          <Column width={120} fixed="right">
-            <HeaderCell>Delete Expense</HeaderCell>
-            <Cell style={{ padding: "6px" }}>
-              {(rowData) => (
-                <IconButton
-                  appearance="subtle"
-                  color="red"
-                  icon={<Trash></Trash>}
-                  onClick={() => {
-                    deleteHandler(rowData._id);
-                  }}
-                ></IconButton>
-              )}
-            </Cell>
-          </Column>
+          
         </Table>
       )}
     </div>

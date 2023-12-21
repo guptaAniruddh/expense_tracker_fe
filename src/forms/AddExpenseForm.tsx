@@ -1,12 +1,13 @@
 import React from "react";
 import { Form, Button } from "rsuite";
-import { SelectPicker } from "rsuite";
+import { SelectPicker,InputPicker } from "rsuite";
 import { IExpenseValidationError } from "../pages/AddExpense";
 interface Props {
   handleChange : (e :React.ChangeEvent<HTMLInputElement>) => void;
   validationErrors:IExpenseValidationError;
   isEdit: boolean;
   handleSubmit: (response: {
+    type:string,
     title: string;
     amount: number;
     date: Date;
@@ -14,6 +15,7 @@ interface Props {
   }) => Promise<void>;
   setResponse: React.Dispatch<
     React.SetStateAction<{
+      type:string,
       title: string;
       amount: number;
       date: Date;
@@ -21,6 +23,7 @@ interface Props {
     }>
   >;
   response: {
+    type:string,
     title: string;
     amount: number;
     date: Date;
@@ -38,11 +41,21 @@ const AddExpenseForm = ({
   var list = ["Health ","Entertainment","Food","Travel","Education","Other"].map(
     item => ({ label: item, value: item })
   );
-  
+  var list1 = ["Debit","Credit"].map(
+    item => ({ label: item, value: item })
+  );;
 
   return (
     <div>
       <Form layout="inline">
+        <InputPicker data={list1} style={{ width: 112 }}
+        onChange={(value) => {
+          if(value){
+            setResponse({...response, type: value})
+          }
+         } } value={response.type} appearance="default"  placeholder="Select Type"  defaultValue="Entertainment" > 
+      </InputPicker>
+      
         <Form.Group controlId="title" onChange={handleChange}>
           <Form.ControlLabel>Title</Form.ControlLabel>
           <Form.Control name="title" style={{ width: 160 }} value={response.title}/>
