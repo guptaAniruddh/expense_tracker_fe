@@ -5,13 +5,20 @@ import axios from "axios";
 import { Trash, Edit } from "@rsuite/icons";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { confirmAlert } from "react-confirm-alert";
+import { Pagination } from "rsuite";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
 const { Column, HeaderCell, Cell } = Table;
 const DataFetch = () => {
+  const [activepage, setactivepage] = useState<number>(1);
+  const handleSelect= (page:number|string)=>{
+     page=Number(page);
+
+  }
+  
   let expenseId: string;
   const navigate = useNavigate();
+  let total_expense =0;
   const deleteHandler = async (userId: string) => {
     try {
       console.log("Reached");
@@ -21,6 +28,8 @@ const DataFetch = () => {
         {
           headers: {
             token: localStorage.getItem("token"),
+            pageNo:activepage,
+            pageSize:10,
           },
         }
       );
@@ -33,7 +42,8 @@ const DataFetch = () => {
 
   const [expenses, setExpenses] = useState<expense[]>([]);
   const [reload, setReload] = useState(true);
-
+  
+    
   useEffect(() => {
     const DataFetch = async () => {
       await axios
@@ -43,20 +53,21 @@ const DataFetch = () => {
           },
         })
         .then((res) => {
-          setExpenses(res.data);
+          total_expense= res.data.total_count;
+          setExpenses(res.data.data);
         });
-    };
+    
     if (reload) {
       DataFetch();
     }
-  }, [reload]);
-
+}
+ }, [reload,activepage]);
   return (
-    <div>
+    <div style={{paddingLeft: 20}}>
       {expenses && (
         <Table
-          height={400}
-          width={1200}
+          height={500}
+          width={1000}
           data={expenses}
           onRowClick={(rowData) => {
             console.log(rowData);
@@ -71,27 +82,27 @@ const DataFetch = () => {
             <HeaderCell className="font">Title</HeaderCell>
             <Cell dataKey="title" />
           </Column>
-          <Column width={200}>
+          <Column width={150}>
             <HeaderCell className="font">Type</HeaderCell>
             <Cell dataKey="type" />
           </Column>
 
-          <Column width={200}>
+          <Column width={150}>
             <HeaderCell className="font">Amount</HeaderCell>
             <Cell dataKey="amount" />
           </Column>
 
-          <Column width={200}>
+          <Column width={170}>
             <HeaderCell className="font">Date</HeaderCell>
             <Cell dataKey="date" />
           </Column>
 
-          <Column width={200}>
+          <Column width={150}>
             <HeaderCell className ="font">Category</HeaderCell>
             <Cell dataKey="category" />
           </Column>
 
-          <Column width={250} fixed="right">
+          <Column width={170} fixed="right">
             <HeaderCell className="font">Action </HeaderCell>
 
             <Cell style={{ padding: "6px" }}>
@@ -118,7 +129,20 @@ const DataFetch = () => {
           </Column>
           
         </Table>
-      )}
+      )};
+       <Pagination
+          prev
+          last
+          next
+          first
+          total={total_expense}
+          size="lg"
+          pages={10}
+          activePage={activepage}
+          onChangePage={(page)=>setactivepage(page)}
+        
+        />
+
     </div>
   );
 };

@@ -6,9 +6,12 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { SchemaCheckResult } from 'schema-typed'
 import { Schema } from 'rsuite'
-export type IExpenseValidationError = SchemaCheckResult<{title: string; amount: number; date:Date,category: string}, string>
+export type IExpenseValidationError = SchemaCheckResult<{type:string,title: string; amount: number; date:Date,category: string}, string>
 
 export const expenseValidationErrors: IExpenseValidationError = {
+  type:{
+    hasError:false,
+  },
   title: {
     hasError: false,
   },

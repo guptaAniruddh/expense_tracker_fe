@@ -55,6 +55,8 @@ const AddExpenseForm = ({
           }
          } } value={response.type} appearance="default"  placeholder="Select Type"  defaultValue="Entertainment" > 
       </InputPicker>
+      <Form.ErrorMessage show = {validationErrors.type.hasError
+      }>{validationErrors.type.errorMessage}</Form.ErrorMessage>
       
         <Form.Group controlId="title" onChange={handleChange}>
           <Form.ControlLabel>Title</Form.ControlLabel>
