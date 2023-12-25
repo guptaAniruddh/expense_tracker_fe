@@ -10,12 +10,9 @@ function App() {
   return (
     <div >
     <div>
-    {/* <Sidebar/> */}
     <Header/>
-    
     <DataFetch />
     </div>
-    
     </div>  
 
     );
