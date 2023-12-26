@@ -1,0 +1,149 @@
+.divstyle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+}
+.buttonStyle {
+  text-align: center;
+}
+
+.labelStyle {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  font-size: small;
+  margin: 10px 2px;
+  align-items: flex-start;
+}
+.hstyle {
+  font-family: 'Roboto', sans-serif;
+}
+.inputStyle {
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-bottom: 12px;
+}
+
+.formItem {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+.navItem {
+  font-weight: 400;
+  color: white;
+  text-decoration: none;
+}
+
+.navItem::before {
+  width: 0;
+  height: 2px;
+  content: '';
+  background-color: white;
+  display: block;
+  transition: width 0.3s;
+  text-decoration: none;
+}
+
+.navItem:hover::before {
+  width: 100%;
+  text-decoration: none;
+}
+
+.activeTab::before {
+  width: 100%;
+  text-decoration: none;
+}
+
+.navItem:hover {
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.root-item {
+  display: flex;
+  flex-direction: row;
+}
+
+.body-items {
+  display: flex;
+  flex: 13;
+  flex-direction: column;
+}
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
+
+body {
+    background-color: #e0e3e8;
+    font-family: "Rubik", sans-serif;
+}
+/* ---Sidebar css */
+.text-primary{
+  color: #5a8dee!important;
+}
+.btn-primary {
+    border-color: #5a8dee !important;
+    background-color: #5a8dee !important;
+    color: #fff;
+}
+.shadow-md {
+    box-shadow: 0px 5px 10px rgba(90, 116, 148, 0.3);
+}
+.navbar{
+  border-radius: 5px;
+}
+.sidebar{
+    width: 220px;
+    min-height: 100vh;
+    box-shadow: 0px 4px 8px rgb(0 0 0 / 16%);
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    overflow: auto;
+    right: -100%;
+    z-index: 10;
+    transition: right .8s ease-in-out;
+    background-color: rgb(76, 185, 231, 0.6);
+    backdrop-filter: blur(10px);
+}
+.active {
+  transition: right .8s ease-in-out;
+  right: 0
+}
+.sd-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.sd-body{
+    padding: 15px;
+    max-height: calc(100vh - 67px);
+    overflow-x: hidden;
+    color: black;
+}
+.sd-body ul{
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 0;
+    padding: 0;
+}
+.sd-body ul li{
+    list-style: none;
+    margin-bottom: 8px;
+    color:'black'
+}
+.sd-body ul li .sd-link{
+    display: inline-block;
+    width: 100%;
+    padding: 10px 16px;
+    color: #33ce17;
+    background-color: #e5e8ec;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
