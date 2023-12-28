@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Nav, Navbar, Uploader, Button, IconButton } from "rsuite";
 import HomeIcon from "@rsuite/icons/legacy/Home";
 import ExitIcon from "@rsuite/icons/Exit";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation} from "react-router-dom";
 import { FileType } from "rsuite/esm/Uploader";
 import axios, { AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { CgProfile } from "react-icons/cg";
 import { MdAccountBalance } from "react-icons/md";
 import CloseIcon from "@rsuite/icons/Close";
-import { COLOR } from "rsuite/esm/utils/constants";
+import Iconbutton from "../Atom/Iconbutton";
+import { Profile } from "../Atom/Icons";
+import Sample_Csv from  "../uploads/convertcsv.csv"
+import { Alert } from "react-bootstrap";
 
 const Header = () => {
   const route = useLocation();
@@ -94,18 +97,19 @@ const Header = () => {
           >
             <Nav.Item>Upload Csv</Nav.Item>
           </Uploader>
+          <Link to={Sample_Csv} target="_blank" download="Example csv file"  style={{marginTop:"8px"}}><Button  color="red">Download Sample Csv </Button>
+          </Link>
         </Nav>
         <Nav pullRight>
           <Nav.Item>
-            <IconButton
+            <Iconbutton
               appearance="subtle"
-              onClick={toggleSidebar}
+              handleClick={toggleSidebar}
               color="blue"
               size="lg"
-              icon={<CgProfile color="white" size={25} />}
+              icon={<Profile  />}
             />
           </Nav.Item>
-
           <div
             onMouseLeave={toggleSidebar}
             className={`sidebar ${isOpen ? "active" : ""}`}
@@ -119,7 +123,7 @@ const Header = () => {
             </div>
             <div style={{display: 'flex', flexDirection:'column', justifyItems:'space-between'}}>
               <Nav.Item>
-                <IconButton icon={<ExitIcon />}>
+                <Iconbutton icon={<ExitIcon />}>
                   <Link
                     className="navItem"
                     to={"/logout"}
@@ -128,7 +132,7 @@ const Header = () => {
                     {" "}
                     Logout
                   </Link>
-                </IconButton>
+                </Iconbutton>
               </Nav.Item>
 
               <Nav.Item style={{}}>

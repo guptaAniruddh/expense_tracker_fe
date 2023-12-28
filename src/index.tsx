@@ -6,7 +6,7 @@ import './index.css';
 import { Route } from 'react-router-dom';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import Logout from './component/Logout';
+import Logout from './organsm/Logout';
 import AddExpense from './pages/AddExpense';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
